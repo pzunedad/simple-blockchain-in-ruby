@@ -19,12 +19,15 @@ class Block
     @aux2 = @nonce + @transactions_count
   end
 
-  def compute_hash_with_proof_of_work(difficulty="00")
+  def compute_hash_with_proof_of_work(difficulty="0135")
     nonce = 0
     loop do 
       hash = calc_hash_with_nonce(nonce)
-      return [nonce, hash] if hash.start_with?(difficulty)
-      nonce += 1
+      if hash.start_with?(difficulty)
+        return [nonce, hash]
+      else
+        nonce +=1
+      end
     end
   end
 
@@ -35,6 +38,7 @@ class Block
                @timestamp.to_s + 
                @transactions.to_s + 
                @transactions_count.to_s + 
+               @previous_hash +
                @previous_hash)
     sha.hexdigest
   end

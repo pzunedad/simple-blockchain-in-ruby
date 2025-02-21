@@ -38,16 +38,18 @@ LEDGER = []
 
 def create_first_block
 	i = 0
-	instance_variable_set( "@b#{i}", 
-												 Block.first( 
-													{ from: "Dutchgrown", to: "Vincent", what: "Tulip Bloemendaal Sunset", qty: 10 },
-													{ from: "Keukenhof", to: "Anne", what: "Tulip Semper Augustus", qty: 7 } )
-											 )
-	LEDGER << @b0
-	pp @b0
-	p "============================"
+	instance_variable_set("@b#{i}", Block.first(
+	  { from: "Dutchgrown", to: "Vincent", what: "Tulip Bloemendaal Sunset", qty: 10 },
+	  { from: "Keukenhof", to: "Anne", what: "Tulip Semper Augustus", qty: 7 },
+	  { from: "LeBron", to: "Kobe", what: "Basketball shoes", qty: 4 },
+	  { from: "Amsterdam Seeds", to: "John", what: "White Widow Seeds", qty: 5 }
+	))
+	
+	LEDGER << instance_variable_get("@b#{i}")
+	pp instance_variable_get("@b#{i}")
+	puts "============================"
 	add_block
-end
+  end
 	
 	
 	
